@@ -35,7 +35,7 @@ public class RedisMutex {
     /** 嘗試取得鎖，成功回傳 token，失敗回傳 null */
     public String tryLock(String lockKey, Duration ttl) {
         String token = UUID.randomUUID().toString();
-        Boolean ok = redis.opsForValue().setIfAbsent(lockKey, token, ttl);
+        Boolean ok = redis.opsForValue().setIfAbsent(lockKey, token, ttl);//SET NX PX
         return Boolean.TRUE.equals(ok) ? token : null;
     }
 
