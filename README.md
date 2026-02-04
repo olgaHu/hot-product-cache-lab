@@ -1,7 +1,7 @@
 # 高併發熱門商品查詢的快取與防擊穿實作（Redis + Caffeine）
 
 本SideProject實作在「高併發熱門商品（Top 10）查詢」場景下，  
-如何透過 **多級快取 + Redis 分布式互斥鎖**，避免快取擊穿（Cache Breakdown）。
+透過 **多級快取 + Redis 分布式互斥鎖**，避免 快取擊穿。
 
 ---
 
@@ -19,7 +19,7 @@
 - 確保同一時間只有一個請求回源資料庫
 - 其餘請求等待回填結果並重用快取資料
 
-設計重點包含：
+設計要點包含：
 - Redis Mutex（SET NX PX）
 - Double-check Redis（避免重複回源）
 - Retry + Exponential Backoff + Jitter（避免重試風暴）
